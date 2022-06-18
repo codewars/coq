@@ -36,7 +36,7 @@ RUN set -ex; \
     cd /opt; \
     wget https://github.com/codewars/coq_codewars/archive/refs/tags/v2.0.0.tar.gz; \
     tar xvf v2.0.0.tar.gz; \
-    rm v2.0.0.tar.gz; \
+    rm -vf v2.0.0.tar.gz; \
     cd coq_codewars-2.0.0; \
     coq_makefile -f _CoqProject -o Makefile; \
     make;
