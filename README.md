@@ -5,17 +5,13 @@ Container image for Coq used by CodeRunner.
 ## Usage
 
 ```bash
-W=/workspace
-# Create container
-C=$(docker container create --rm -w $W ghcr.io/codewars/coq:latest sh -c "coqc Solution.v && coqc -I /opt/coq_codewars/src -Q /opt/coq_codewars/theories CW SolutionTest.v")
+$ ./bin/run
+```
 
-# Copy files from the current directory
-# ./Solution.v
-# ./SolutionTest.v
-docker container cp ./. $C:$W
+You can specify the container engine through the variable `CONTAINER_ENGINE` (default: `docker`). For example, with Podman:
 
-# Start
-docker container start --attach $C
+```bash
+$ CONTAINER_ENGINE=podman ./bin/run
 ```
 
 ## Building
