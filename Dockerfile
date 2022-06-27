@@ -6,11 +6,11 @@ RUN set -ex; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
       wget ca-certificates curl build-essential unzip; \
-    wget https://github.com/coq/platform/archive/refs/tags/2022.04.0.tar.gz; \
-    tar xvf 2022.04.0.tar.gz; \
-    rm -vf 2022.04.0.tar.gz;
+    wget https://github.com/coq/platform/archive/refs/tags/2022.04.1.tar.gz; \
+    tar xvf 2022.04.1.tar.gz; \
+    rm -vf 2022.04.1.tar.gz;
 
-WORKDIR /tmp/platform-2022.04.0
+WORKDIR /tmp/platform-2022.04.1
 
 ENV OPAMROOT=/opt/coq \
     OPAMYES=1 \
@@ -27,7 +27,7 @@ RUN set -ex; \
     echo "d" >> stdin; \
     ./coq_platform_make.sh < stdin;
 
-ENV OPAM_SWITCH_NAME=__coq-platform.2022.04.0~8.15~2022.04
+ENV OPAM_SWITCH_NAME=__coq-platform.2022.04.1~8.15~2022.04
 ENV OPAM_SWITCH_PREFIX=/opt/coq/$OPAM_SWITCH_NAME
 ENV CAML_LD_LIBRARY_PATH=$OPAM_SWITCH_PREFIX/lib/stublibs:$OPAM_SWITCH_PREFIX/lib/ocaml/stublibs:$OPAM_SWITCH_PREFIX/lib/ocaml \
     OCAML_TOPLEVEL_PATH=$OPAM_SWITCH_PREFIX/lib/stublibs/lib/toplevel \
@@ -53,7 +53,7 @@ RUN set -ex; \
     chown -R codewarrior: /workspace;
 
 USER codewarrior
-ENV OPAM_SWITCH_NAME=__coq-platform.2022.04.0~8.15~2022.04
+ENV OPAM_SWITCH_NAME=__coq-platform.2022.04.1~8.15~2022.04
 ENV OPAM_SWITCH_PREFIX=/opt/coq/$OPAM_SWITCH_NAME
 ENV USER=codewarrior \
     HOME=/home/codewarrior \
