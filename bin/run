@@ -7,15 +7,13 @@ fi
 
 W=/workspace
 
-for example in $(ls examples); do
-	# Create container
-	C=$($CONTAINER_ENGINE container create --rm -w $W ghcr.io/codewars/coq:latest sh -c "coqc Solution.v && coqc -I /opt/coq_codewars-2.0.0/src -R /opt/coq_codewars-2.0.0/theories CW SolutionTest.v")
+# Create container
+C=$($CONTAINER_ENGINE container create --rm -w $W ghcr.io/codewars/coq:latest sh -c "coqc Solution.v && coqc -I /opt/coq_codewars/src -R /opt/coq_codewars/theories CW SolutionTest.v")
 
-	# Copy files from the current directory
-	# example/Solution.v
-	# example/SolutionTest.v
-	$CONTAINER_ENGINE container cp examples/$example/. $C:$W
-	
-	# Run tests
-	$CONTAINER_ENGINE container start --attach $C || true
-done
+# Copy files from the current directory
+# example/Solution.v
+# example/SolutionTest.v
+$CONTAINER_ENGINE container cp examples/${1:-passing}/. $C:$W
+
+# Run tests
+$CONTAINER_ENGINE container start --attach $C || true
