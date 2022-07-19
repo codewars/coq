@@ -8,7 +8,7 @@ fi
 W=/workspace
 
 # Create container
-C=$($CONTAINER_ENGINE container create --rm -w $W ghcr.io/codewars/coq:latest sh -c "coqc Solution.v && coqc -I /opt/coq_codewars/src -R /opt/coq_codewars/theories CW SolutionTest.v")
+C=$($CONTAINER_ENGINE container create --rm -w $W ghcr.io/codewars/coq:latest sh -c "coqc Solution.v && coqc -I /opt/coq_codewars/src -Q /opt/coq_codewars/theories CW SolutionTest.v")
 
 # Copy files from the current directory
 # example/Solution.v
