@@ -22,10 +22,14 @@ ENV OPAMROOT=/opt/coq \
     COQ_PLATFORM_JOBS=4 \
     COQ_PLATFORM_SET_SWITCH=y
 
+COPY package-pick.patch .
+
 RUN set -ex; \
+    patch package_picks/package-pick-8.15~2022.04.sh < package-pick.patch; \
     echo "" > stdin; \
     echo "d" >> stdin; \
-    ./coq_platform_make.sh < stdin;
+    ./coq_platform_make.sh < stdin; \
+    opam clean;
 
 ENV OPAM_SWITCH_NAME=__coq-platform.2022.04.1~8.15~2022.04
 ENV OPAM_SWITCH_PREFIX=/opt/coq/$OPAM_SWITCH_NAME
