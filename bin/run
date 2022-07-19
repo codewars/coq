@@ -2,7 +2,7 @@
 set -eu
 
 if [ -z "${CONTAINER_ENGINE:+x}" ]; then
-	CONTAINER_ENGINE=docker
+  CONTAINER_ENGINE=docker
 fi
 
 W=/workspace
