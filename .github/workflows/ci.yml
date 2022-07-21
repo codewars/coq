@@ -26,3 +26,8 @@ jobs:
 
       - name: Run Passing Example
         run: bin/run passing
+
+      - name: Report Image Size
+        run: |
+          echo "## Image Size" >> $GITHUB_STEP_SUMMARY
+          docker image inspect --format '{{.Size}}' ghcr.io/codewars/coq:latest | numfmt --to=si --suffix=B >> $GITHUB_STEP_SUMMARY
