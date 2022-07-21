@@ -29,7 +29,7 @@ RUN set -ex; \
     echo "" > stdin; \
     echo "d" >> stdin; \
     ./coq_platform_make.sh < stdin; \
-    opam clean;
+    opam clean --repo-cache;
 
 ENV OPAM_SWITCH_NAME=__coq-platform.2022.04.1~8.15~2022.04
 ENV OPAM_SWITCH_PREFIX=/opt/coq/$OPAM_SWITCH_NAME
