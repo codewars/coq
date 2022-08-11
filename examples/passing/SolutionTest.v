@@ -1,6 +1,9 @@
-Require Import Solution.
-Theorem plus_n_O_check : forall n:nat, n = n + 0.
-Proof.
-  exact plus_n_O.
-  Print Assumptions plus_n_O.
-Qed.
+Require Solution.
+From CW Require Import Loader.
+
+CWGroup "Solution.thm4".
+  CWTest "should have the correct type".
+    CWAssert Solution.thm4 : (1 = 1).
+  CWTest "should be closed under the global context".
+    CWAssert Solution.thm4 Assumes.
+CWEndGroup.
